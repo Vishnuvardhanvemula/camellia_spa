@@ -31,8 +31,9 @@ export default function Home() {
           sizes="100vw"
           className="object-cover object-[50%_35%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-espresso/90 via-espresso/40 to-espresso/10" />
-        
+        <div className="absolute inset-0 bg-gradient-to-t from-espresso/95 via-espresso/50 to-espresso/20" />
+        <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px]" />
+
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col gap-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -40,34 +41,52 @@ export default function Home() {
             transition={{ duration: 1, ease: "easeOut" }}
           >
 
-            <h1 className="text-5xl md:text-7xl lg:text-[88px] text-cream font-serif leading-[1.05] max-w-3xl">
+            <h1 className="text-5xl md:text-7xl lg:text-[88px] text-cream font-serif leading-[1.05] max-w-3xl drop-shadow-lg">
               Elevate Your<br />Well-Being.
             </h1>
           </motion.div>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.4 }}
-            className="text-cream/80 text-lg md:text-xl max-w-xl font-light mt-4"
+            className="text-cream/95 text-lg md:text-xl max-w-xl font-light mt-4 drop-shadow-md"
           >
             Experience a sanctuary of holistic rejuvenation, where expert therapies and uncompromising service restore balance to mind and body.
           </motion.p>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-4 mt-8"
           >
-            <Link href="/contact" className="px-8 py-4 bg-gold text-espresso hover:bg-cream transition-colors text-sm uppercase tracking-widest font-semibold text-center">
+            <Link href="/contact" className="px-8 py-4 bg-gold text-espresso hover:bg-cream transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-xl hover:shadow-2xl text-sm uppercase tracking-widest font-semibold text-center">
               Book Your Appointment
             </Link>
-            <Link href="/services" className="px-8 py-4 border border-cream/30 text-cream hover:bg-cream/10 transition-colors text-sm uppercase tracking-widest font-semibold text-center">
+            <Link href="/services" className="px-8 py-4 border-2 border-cream/40 text-cream hover:bg-cream/20 hover:border-cream/70 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] text-sm uppercase tracking-widest font-semibold text-center backdrop-blur-md shadow-lg hover:shadow-xl">
               Explore Treatments
             </Link>
           </motion.div>
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.5 }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 cursor-pointer"
+          onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+        >
+          <span className="text-cream/60 text-xs uppercase tracking-widest">Scroll</span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-6 h-10 border-2 border-cream/40 rounded-full flex justify-center pt-2"
+          >
+            <div className="w-1 h-2 bg-cream/60 rounded-full" />
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Brand Introduction */}
@@ -236,10 +255,10 @@ export default function Home() {
             Secure your reservation and embark on a transformative journey of relaxation.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 w-full justify-center">
-            <Link href="/contact" className="px-10 py-5 bg-gold text-espresso hover:bg-cream transition-colors text-sm uppercase tracking-widest font-semibold">
+            <Link href="/contact" className="px-10 py-5 bg-gold text-espresso hover:bg-cream transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-xl hover:shadow-2xl text-sm uppercase tracking-widest font-semibold">
               Book Your Appointment
             </Link>
-            <Link href="/contact" className="px-10 py-5 border border-cream/30 text-cream hover:bg-cream/10 transition-colors text-sm uppercase tracking-widest font-semibold">
+            <Link href="/contact" className="px-10 py-5 border border-cream/30 text-cream hover:bg-cream/10 hover:border-cream/60 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] text-sm uppercase tracking-widest font-semibold backdrop-blur-sm">
               Call Camellia Spa
             </Link>
           </div>

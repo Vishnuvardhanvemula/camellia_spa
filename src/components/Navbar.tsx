@@ -23,9 +23,9 @@ export function Navbar() {
       <header
         className={clsx(
           "fixed top-0 left-0 right-0 z-40 transition-all duration-500 border-b",
-          scrolled 
-            ? "bg-espresso backdrop-blur-md border-gold/20 shadow-lg text-cream py-4" 
-            : "bg-transparent border-transparent text-cream py-6"
+          scrolled
+            ? "bg-espresso/95 backdrop-blur-md border-gold/20 shadow-lg text-cream py-4"
+            : "bg-espresso/80 backdrop-blur-sm border-transparent text-cream py-6"
         )}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
@@ -36,19 +36,22 @@ export function Navbar() {
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide uppercase">
-            <Link href="/" className="hover:text-gold transition-colors">Home</Link>
-            <Link href="/services" className="hover:text-gold transition-colors">Services</Link>
-            <Link href="/contact" className="hover:text-gold transition-colors">Contact</Link>
+          <nav className="hidden md:flex items-center gap-8 text-base font-semibold tracking-wide uppercase">
+            <Link href="/" className="hover:text-gold hover:underline underline-offset-4 decoration-2 transition-all duration-300">Home</Link>
+            <Link href="/services" className="hover:text-gold hover:underline underline-offset-4 decoration-2 transition-all duration-300">Services</Link>
+            <Link href="/contact" className="hover:text-gold hover:underline underline-offset-4 decoration-2 transition-all duration-300">Contact</Link>
           </nav>
 
-          <div className="hidden md:block">
-            <Link href="/contact" className="px-6 py-3 bg-gold text-espresso hover:bg-cream hover:text-espresso transition-colors text-xs font-bold uppercase tracking-widest">
+          <div className={clsx(
+            "hidden md:block transition-all duration-500",
+            scrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
+          )}>
+            <Link href="/contact" className="px-6 py-3 bg-gold text-espresso hover:bg-cream hover:text-espresso transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg text-xs font-bold uppercase tracking-widest">
               Book Appointment
             </Link>
           </div>
 
-          <button 
+          <button
             className="md:hidden text-cream"
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Open menu"
@@ -69,19 +72,19 @@ export function Navbar() {
           >
             <div className="p-6 flex justify-end">
               <button onClick={() => setMobileMenuOpen(false)} aria-label="Close menu">
-                <X className="w-8 h-8 text-cream" />
+                <X className="w-8 h-8 text-cream hover:text-gold transition-colors" />
               </button>
             </div>
-            
+
             <nav className="flex flex-col items-center justify-center flex-1 gap-12 text-3xl font-serif">
-              <Link href="/" onClick={() => setMobileMenuOpen(false)} className="hover:text-gold transition-colors">Home</Link>
-              <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="hover:text-gold transition-colors">Services</Link>
-              <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-gold transition-colors">Contact</Link>
-              
-              <Link 
-                href="/contact" 
+              <Link href="/" onClick={() => setMobileMenuOpen(false)} className="hover:text-gold transition-colors hover:scale-105">Home</Link>
+              <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="hover:text-gold transition-colors hover:scale-105">Services</Link>
+              <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-gold transition-colors hover:scale-105">Contact</Link>
+
+              <Link
+                href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="mt-8 px-8 py-4 bg-gold text-espresso text-lg font-sans uppercase tracking-widest"
+                className="mt-8 px-8 py-4 bg-gold text-espresso text-lg font-sans uppercase tracking-widest hover:bg-cream transition-colors shadow-lg"
               >
                 Book Appointment
               </Link>
