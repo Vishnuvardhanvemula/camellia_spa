@@ -27,14 +27,14 @@ export default function ServicesPage() {
         <span className="text-gold text-xs font-semibold tracking-[0.2em] uppercase mb-4 block">
           Camellia Spa
         </span>
-        <h1 className="text-5xl md:text-7xl font-serif mb-6">Treatments & Packages</h1>
+        <h1 className="text-5xl md:text-7xl font-serif mb-6">Comprehensive Wellness Menu</h1>
         <p className="text-cream/70 text-lg max-w-2xl mx-auto">
-          Explore our premium and luxury experiences. Each treatment is tailored to your unique needs.
+          Explore our extensive portfolio of therapeutic massages, advanced body polishes, and curated spa packages, each executed with uncompromising standards of care.
         </p>
       </section>
 
       {/* Tabs */}
-      <section className="sticky top-[80px] z-30 bg-cream/95 backdrop-blur-md border-b border-espresso/10">
+      <section className="sticky top-[80px] z-10 bg-cream/95 backdrop-blur-md border-b border-espresso/10">
         <div className="max-w-4xl mx-auto px-6 overflow-x-auto hide-scrollbar">
           <div className="flex gap-8 md:gap-16 min-w-max">
             {tabs.map((tab) => (
@@ -68,7 +68,14 @@ export default function ServicesPage() {
           transition={{ duration: 0.4 }}
         >
           {activeTab === "premium" && (
-            <div className="flex flex-col gap-8">
+            <>
+              <div className="mb-12 text-center md:text-left">
+                <h2 className="text-3xl font-serif mb-4">Premium Therapies</h2>
+                <p className="text-espresso/70 max-w-xl">
+                  Expertly designed therapeutic treatments focused on relieving muscular tension, improving circulation, and promoting deep physical recovery.
+                </p>
+              </div>
+              <div className="flex flex-col gap-8">
               {premiumServices.map((service, i) => (
                 <div key={i} className="flex flex-col md:flex-row justify-between items-start md:items-center py-6 border-b border-espresso/10 gap-4 group">
                   <h3 className="text-2xl font-serif group-hover:text-burgundy transition-colors">{service.name}</h3>
@@ -81,17 +88,25 @@ export default function ServicesPage() {
                       <span className="text-espresso/50 text-xs uppercase tracking-widest mb-1">90 Min</span>
                       <span>₹{service.duration90}</span>
                     </div>
-                    <Link href={`/contact?service=${encodeURIComponent(service.name)}`} className="ml-auto md:ml-4 text-gold uppercase tracking-widest text-xs font-bold hover:text-burgundy transition-colors">
+                    <Link href={`/contact?service=${encodeURIComponent(service.name)}`} className="ml-auto md:ml-4 px-4 py-2 border border-espresso/20 text-espresso uppercase tracking-widest text-[10px] font-bold hover:bg-espresso hover:text-gold transition-colors rounded-sm">
                       Enquire
                     </Link>
                   </div>
                 </div>
               ))}
-            </div>
+              </div>
+            </>
           )}
 
           {activeTab === "luxury" && (
-            <div className="flex flex-col gap-8">
+            <>
+              <div className="mb-12 text-center md:text-left">
+                <h2 className="text-3xl font-serif mb-4">Luxury Experiences</h2>
+                <p className="text-espresso/70 max-w-xl">
+                  Indulgent, multi-sensory experiences utilizing premium formulations and advanced techniques for ultimate relaxation.
+                </p>
+              </div>
+              <div className="flex flex-col gap-8">
               {luxuryServices.map((service, i) => (
                 <div key={i} className="flex flex-col md:flex-row justify-between items-start md:items-center py-6 border-b border-espresso/10 gap-4 group">
                   <div>
@@ -111,21 +126,22 @@ export default function ServicesPage() {
                       <span className="text-espresso/50 text-xs uppercase tracking-widest mb-1">90 Min</span>
                       <span>₹{service.duration90}</span>
                     </div>
-                    <Link href={`/contact?service=${encodeURIComponent(service.name)}`} className="ml-auto md:ml-4 text-gold uppercase tracking-widest text-xs font-bold hover:text-burgundy transition-colors">
+                    <Link href={`/contact?service=${encodeURIComponent(service.name)}`} className="ml-auto md:ml-4 px-4 py-2 border border-espresso/20 text-espresso uppercase tracking-widest text-[10px] font-bold hover:bg-espresso hover:text-gold transition-colors rounded-sm">
                       Enquire
                     </Link>
                   </div>
                 </div>
               ))}
-            </div>
+              </div>
+            </>
           )}
 
           {activeTab === "polishing" && (
             <div>
               <div className="mb-12 text-center md:text-left">
-                <h2 className="text-3xl font-serif mb-4">Polish. Refresh. Glow.</h2>
+                <h2 className="text-3xl font-serif mb-4">Advanced Body Exfoliation</h2>
                 <p className="text-espresso/70 max-w-xl">
-                  Our body polishing treatments exfoliate and hydrate, leaving your skin feeling softer, brighter, and deeply moisturized.
+                  Refine and revitalize your skin's texture with our luxurious body polishing treatments, designed to deeply hydrate and restore your natural radiance.
                 </p>
               </div>
               <div className="flex flex-col gap-8">
@@ -134,7 +150,7 @@ export default function ServicesPage() {
                     <h3 className="text-2xl font-serif group-hover:text-burgundy transition-colors">{service.name}</h3>
                     <div className="flex items-center gap-8 w-full md:w-auto text-sm font-medium">
                       <span className="text-lg">₹{service.price}</span>
-                      <Link href={`/contact?service=${encodeURIComponent(service.name)}`} className="ml-auto md:ml-4 text-gold uppercase tracking-widest text-xs font-bold hover:text-burgundy transition-colors">
+                      <Link href={`/contact?service=${encodeURIComponent(service.name)}`} className="ml-auto md:ml-4 px-4 py-2 border border-espresso/20 text-espresso uppercase tracking-widest text-[10px] font-bold hover:bg-espresso hover:text-gold transition-colors rounded-sm">
                         Enquire
                       </Link>
                     </div>
@@ -174,7 +190,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Booking CTA */}
-      <section className="py-24 px-6 md:px-12 bg-deep-burgundy text-center">
+      <section className="relative z-20 py-24 px-6 md:px-12 bg-deep-burgundy text-center">
         <h2 className="text-4xl font-serif text-cream mb-8">Ready to deeply relax?</h2>
         <Link href="/contact" className="inline-block px-10 py-5 bg-gold text-espresso hover:bg-cream transition-colors text-sm uppercase tracking-widest font-semibold">
           Reserve Your Time

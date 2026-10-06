@@ -39,11 +39,9 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <span className="text-gold text-xs md:text-sm font-semibold tracking-[0.2em] uppercase mb-4 block">
-              Camellia Spa · Wellness & Restoration
-            </span>
+
             <h1 className="text-5xl md:text-7xl lg:text-[88px] text-cream font-serif leading-[1.05] max-w-3xl">
-              A softer way<br />to slow down.
+              Elevate Your<br />Well-Being.
             </h1>
           </motion.div>
 
@@ -53,7 +51,7 @@ export default function Home() {
             transition={{ duration: 1, delay: 0.4 }}
             className="text-cream/80 text-lg md:text-xl max-w-xl font-light mt-4"
           >
-            A warm, private space designed for unhurried moments of care and relaxation.
+            Experience a sanctuary of holistic rejuvenation, where expert therapies and uncompromising service restore balance to mind and body.
           </motion.p>
 
           <motion.div 
@@ -101,10 +99,10 @@ export default function Home() {
               The Camellia Experience
             </span>
             <h2 className="text-4xl md:text-5xl font-serif text-espresso leading-tight">
-              Warm spaces. Thoughtful treatments. Time to breathe.
+              The Pinnacle of Spa Excellence.
             </h2>
             <p className="text-espresso/70 text-lg leading-relaxed">
-              Step into a sanctuary of calm. Our private rooms are carefully prepared to offer you personal attention in a quiet, unhurried environment. Let go of the outside world and immerse yourself in deep relaxation.
+              Step into an oasis of absolute tranquility. Our meticulously curated treatments and serene environments are designed to provide the ultimate restorative experience, delivered by highly trained wellness professionals dedicated to your care.
             </p>
           </motion.div>
         </div>
@@ -116,10 +114,10 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div>
               <h2 className="text-4xl md:text-5xl font-serif text-espresso leading-tight mb-4">
-                Treatments worth lingering over.
+                Signature Therapies.
               </h2>
               <p className="text-espresso/60 text-lg">
-                Explore selected experiences from the Camellia Spa menu.
+                Discover our most sought-after treatments, tailored to alleviate stress, relieve tension, and enhance your natural vitality.
               </p>
             </div>
             <Link href="/services" className="text-burgundy font-semibold text-sm uppercase tracking-widest hover:text-espresso transition-colors">
@@ -224,7 +222,7 @@ export default function Home() {
             <p className="text-cream text-lg font-serif">Head Massage with Navrathna Oil & Body Scrubbing</p>
             <span className="text-cream/60 text-sm mt-1 block">For every massage</span>
           </div>
-          <p className="text-cream/40 text-xs mt-8">Package details are subject to spa terms. Confirm availability and inclusions before purchase.</p>
+          <p className="text-cream/80 text-xs mt-8">Package details are subject to spa terms. Confirm availability and inclusions before purchase.</p>
         </div>
       </section>
 
@@ -232,8 +230,11 @@ export default function Home() {
       <section className="py-32 px-6 md:px-12 bg-espresso text-center">
         <div className="max-w-3xl mx-auto flex flex-col items-center gap-10">
           <h2 className="text-4xl md:text-6xl font-serif text-cream leading-tight">
-            Your time can wait.<br/>Your well-being doesn&apos;t have to.
+            Prioritize Your Wellness Today.
           </h2>
+          <p className="text-cream/70 text-lg">
+            Secure your reservation and embark on a transformative journey of relaxation.
+          </p>
           <div className="flex flex-col sm:flex-row gap-6 w-full justify-center">
             <Link href="/contact" className="px-10 py-5 bg-gold text-espresso hover:bg-cream transition-colors text-sm uppercase tracking-widest font-semibold">
               Book Your Appointment

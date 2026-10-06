@@ -44,11 +44,9 @@ function ContactFormContent() {
     e.preventDefault();
     
     // Default business number - client to replace with real one
-    const businessNumber = "919876543210"; 
+    const businessNumber = "916302211766"; 
     
-    const text = `Hello Camellia Spa,
-
-I would like to enquire about a booking.
+    const text = `Camellia Spa - Booking Enquiry
 
 Name: ${formData.name}
 Phone: ${formData.phone}
@@ -56,8 +54,11 @@ Service: ${formData.service || "Not specified"}
 Preferred Date: ${formData.date || "Not specified"}
 Preferred Time: ${formData.time || "Not specified"}
 
-Additional message:
-${formData.message || "Please confirm availability and pricing."}`;
+Message:
+${formData.message || "Please confirm availability and pricing."}
+
+Thank you for choosing Camellia Spa.
+We'll get back to you shortly.`;
 
     const encodedText = encodeURIComponent(text);
     window.open(`https://wa.me/${businessNumber}?text=${encodedText}`, "_blank");
@@ -107,7 +108,7 @@ ${formData.message || "Please confirm availability and pricing."}`;
         {isDropdownOpen && (
           <>
             <div className="fixed inset-0 z-40" onClick={() => setIsDropdownOpen(false)} />
-            <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-espresso/10 shadow-2xl rounded-xl z-50 overflow-hidden flex flex-col max-h-72 overflow-y-auto">
+            <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-espresso/10 shadow-2xl rounded-xl z-50 overflow-hidden flex flex-col max-h-72 overflow-y-auto" data-lenis-prevent>
               <div className="p-2">
                 <div className="text-[10px] font-bold uppercase tracking-widest text-espresso/40 px-4 py-2">Premium Services</div>
                 {premiumServices.map(s => (
@@ -203,9 +204,9 @@ export default function ContactPage() {
 
       {/* Header */}
       <section className="pt-40 pb-20 px-6 md:px-12 bg-espresso text-cream text-center">
-        <h1 className="text-5xl md:text-7xl font-serif mb-6">Let&apos;s reserve your time.</h1>
+        <h1 className="text-5xl md:text-7xl font-serif mb-6">Request a Reservation.</h1>
         <p className="text-cream/70 text-lg max-w-2xl mx-auto">
-          Choose your preferred treatment and get in touch with Camellia Spa.
+          Connect with our guest relations team to schedule your bespoke wellness experience.
         </p>
       </section>
 
@@ -238,7 +239,8 @@ export default function ContactPage() {
 
         {/* Form */}
         <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-espresso/5">
-          <h2 className="text-2xl font-serif mb-8">Send a Booking Enquiry</h2>
+          <h2 className="text-2xl font-serif mb-2">Submit Your Inquiry</h2>
+          <p className="text-xs text-espresso/50 uppercase tracking-widest font-semibold mb-8">Please note that all reservations are subject to availability. Our team will contact you shortly to confirm your appointment.</p>
           <Suspense fallback={<div className="h-64 flex items-center justify-center text-sm font-semibold tracking-widest text-espresso/50 uppercase">Loading form...</div>}>
             <ContactFormContent />
           </Suspense>
@@ -248,8 +250,8 @@ export default function ContactPage() {
       
       {/* Sticky Mobile Actions */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-espresso text-cream flex text-center z-40 border-t border-gold/20">
-        <a href="tel:+919876543210" className="flex-1 py-4 text-xs uppercase tracking-widest border-r border-gold/20">Call</a>
-        <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="flex-1 py-4 text-xs uppercase tracking-widest font-bold text-gold block">WhatsApp</a>
+        <a href="tel:+916302211766" className="flex-1 py-4 text-xs uppercase tracking-widest border-r border-gold/20">Call</a>
+        <a href="https://wa.me/916302211766" target="_blank" rel="noreferrer" className="flex-1 py-4 text-xs uppercase tracking-widest font-bold text-gold block">WhatsApp</a>
       </div>
 
       <Footer />

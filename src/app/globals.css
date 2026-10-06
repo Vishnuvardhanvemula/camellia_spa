@@ -12,8 +12,8 @@
   --color-ivory: #FFF9F1;
   --color-muted: #BBA998;
   
-  --font-serif: var(--font-cormorant);
-  --font-sans: var(--font-inter);
+  --font-serif: var(--font-brand);
+  --font-sans: var(--font-brand);
   --font-brand: var(--font-brand);
 }
 
