@@ -25,11 +25,22 @@ function ContactFormContent() {
     if (initialService) {
       setFormData(prev => ({ ...prev, service: initialService }));
       setTimeout(() => {
-        const formElement = document.getElementById('booking-form');
-        if (formElement) {
-          formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const formCard = document.getElementById('form-card');
+        if (formCard) {
+          const isMobile = window.innerWidth < 768;
+          const navbarHeight = isMobile ? 72 : 80;
+          const mobileFooterHeight = isMobile ? 60 : 0;
+          const totalOffset = navbarHeight + mobileFooterHeight + 8;
+
+          const elementPosition = formCard.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - totalOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
         }
-      }, 300);
+      }, 600);
     }
   }, [initialService]);
 
@@ -44,7 +55,7 @@ function ContactFormContent() {
     e.preventDefault();
     
     // Default business number - client to replace with real one
-    const businessNumber = "916302211766"; 
+    const businessNumber = "919876543210"; 
     
     const text = `Camellia Spa - Booking Enquiry
 
@@ -203,34 +214,34 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Header */}
-      <section className="pt-40 pb-20 px-6 md:px-12 bg-espresso text-cream text-center">
-        <h1 className="text-5xl md:text-7xl font-serif mb-6">Request a Reservation.</h1>
-        <p className="text-cream/70 text-lg max-w-2xl mx-auto">
+      <section className="pt-32 pb-16 px-6 md:pt-40 md:pb-20 md:px-12 bg-espresso text-cream text-center">
+        <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif mb-6 leading-tight">Request a Reservation.</h1>
+        <p className="text-cream/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
           Connect with our guest relations team to schedule your bespoke wellness experience.
         </p>
       </section>
 
       {/* Content */}
-      <section id="booking-form" className="py-24 px-6 md:px-12 max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
-        
+      <section id="booking-form" className="py-16 md:py-24 px-4 md:px-12 max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
+
         {/* Contact Info */}
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-8 md:gap-12">
           <div>
             <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-burgundy mb-4">Location</h2>
-            <h3 className="text-3xl font-serif mb-4">Camellia Spa</h3>
-            <p className="text-lg text-espresso/80 max-w-sm leading-relaxed">
+            <h3 className="text-2xl md:text-3xl font-serif mb-4">Camellia Spa</h3>
+            <p className="text-base md:text-lg text-espresso/80 max-w-sm leading-relaxed">
               No. 96, 5th Cross, Muneshwara Layout, Kodigehalli Main Road, Basavanapura, Bangalore – 560 036
             </p>
           </div>
-          
+
           <div className="w-full aspect-[4/3] bg-espresso/5 rounded-xl overflow-hidden relative">
-             <iframe 
-               src="https://maps.google.com/maps?q=13.004697799682617,77.71403503417969&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-               width="100%" 
-               height="100%" 
-               style={{ border: 0 }} 
-               allowFullScreen 
-               loading="lazy" 
+             <iframe
+               src="https://maps.google.com/maps?q=13.004697799682617,77.71403503417969&t=&z=15&ie=UTF8&iwloc=&output=embed"
+               width="100%"
+               height="100%"
+               style={{ border: 0 }}
+               allowFullScreen
+               loading="lazy"
                referrerPolicy="no-referrer-when-downgrade"
                className="grayscale contrast-125 opacity-80"
              ></iframe>
@@ -238,9 +249,9 @@ export default function ContactPage() {
         </div>
 
         {/* Form */}
-        <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-espresso/5">
-          <h2 className="text-2xl font-serif mb-2">Submit Your Inquiry</h2>
-          <p className="text-xs text-espresso/50 uppercase tracking-widest font-semibold mb-8">Please note that all reservations are subject to availability. Our team will contact you shortly to confirm your appointment.</p>
+        <div id="form-card" className="bg-white p-6 md:p-12 rounded-2xl shadow-xl border border-espresso/5">
+          <h2 className="text-xl md:text-2xl font-serif mb-2">Submit Your Inquiry</h2>
+          <p className="text-[10px] md:text-xs text-espresso/50 uppercase tracking-widest font-semibold mb-6 md:mb-8">Please note that all reservations are subject to availability. Our team will contact you shortly to confirm your appointment.</p>
           <Suspense fallback={<div className="h-64 flex items-center justify-center text-sm font-semibold tracking-widest text-espresso/50 uppercase">Loading form...</div>}>
             <ContactFormContent />
           </Suspense>
@@ -249,9 +260,8 @@ export default function ContactPage() {
       </section>
       
       {/* Sticky Mobile Actions */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-espresso text-cream flex text-center z-40 border-t border-gold/20">
-        <a href="tel:+916302211766" className="flex-1 py-4 text-xs uppercase tracking-widest border-r border-gold/20">Call</a>
-        <a href="https://wa.me/916302211766" target="_blank" rel="noreferrer" className="flex-1 py-4 text-xs uppercase tracking-widest font-bold text-gold block">WhatsApp</a>
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-espresso text-cream flex text-center z-40 border-t border-gold/20 pb-safe">
+        <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="flex-1 py-4 text-xs uppercase tracking-widest font-bold text-gold block active:bg-gold/10 transition-colors">WhatsApp</a>
       </div>
 
       <Footer />

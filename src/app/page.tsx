@@ -75,7 +75,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.5 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 cursor-pointer"
+          className="absolute bottom-16 md:bottom-12 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-2 cursor-pointer hidden md:flex"
           onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
         >
           <span className="text-cream/60 text-xs uppercase tracking-widest">Scroll</span>
@@ -90,14 +90,14 @@ export default function Home() {
       </section>
 
       {/* Brand Introduction */}
-      <section className="py-24 md:py-36 px-6 md:px-12 max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <motion.div 
+      <section className="py-16 md:py-36 px-6 md:px-12 max-w-7xl mx-auto w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1 }}
-            className="relative h-[60vh] md:h-[80vh] w-full rounded-2xl overflow-hidden"
+            className="relative h-[50vh] md:h-[80vh] w-full rounded-2xl overflow-hidden order-2 md:order-1"
           >
             <Image
               src="/images/img2.jpg"
@@ -107,20 +107,20 @@ export default function Home() {
               className="object-cover"
             />
           </motion.div>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="flex flex-col gap-6"
+            className="flex flex-col gap-6 order-1 md:order-2"
           >
             <span className="text-burgundy text-xs font-bold tracking-[0.2em] uppercase">
               The Camellia Experience
             </span>
-            <h2 className="text-4xl md:text-5xl font-serif text-espresso leading-tight">
+            <h2 className="text-3xl md:text-5xl font-serif text-espresso leading-tight">
               The Pinnacle of Spa Excellence.
             </h2>
-            <p className="text-espresso/70 text-lg leading-relaxed">
+            <p className="text-espresso/70 text-base md:text-lg leading-relaxed">
               Step into an oasis of absolute tranquility. Our meticulously curated treatments and serene environments are designed to provide the ultimate restorative experience, delivered by highly trained wellness professionals dedicated to your care.
             </p>
           </motion.div>
@@ -128,41 +128,41 @@ export default function Home() {
       </section>
 
       {/* Featured Services */}
-      <section className="py-24 md:py-32 px-6 md:px-12 bg-ivory">
+      <section className="py-16 md:py-32 px-6 md:px-12 bg-ivory">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 gap-6">
             <div>
-              <h2 className="text-4xl md:text-5xl font-serif text-espresso leading-tight mb-4">
+              <h2 className="text-3xl md:text-5xl font-serif text-espresso leading-tight mb-4">
                 Signature Therapies.
               </h2>
-              <p className="text-espresso/60 text-lg">
+              <p className="text-espresso/60 text-base md:text-lg">
                 Discover our most sought-after treatments, tailored to alleviate stress, relieve tension, and enhance your natural vitality.
               </p>
             </div>
-            <Link href="/services" className="text-burgundy font-semibold text-sm uppercase tracking-widest hover:text-espresso transition-colors">
+            <Link href="/services" className="text-burgundy font-semibold text-xs md:text-sm uppercase tracking-widest hover:text-espresso transition-colors">
               View Full Menu →
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {featured.map((service, i) => (
-              <motion.div 
+              <motion.div
                 key={service.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group p-8 border border-espresso/10 hover:border-burgundy/30 hover:shadow-xl transition-all duration-500 bg-cream rounded-sm flex flex-col"
+                className="group p-6 md:p-8 border border-espresso/10 hover:border-burgundy/30 hover:shadow-xl transition-all duration-500 bg-cream rounded-sm flex flex-col"
               >
-                <div className="flex justify-between items-start mb-12">
-                  <h3 className="text-2xl font-serif text-espresso pr-4">{service.name}</h3>
-                  <span className="text-gold font-medium">₹{'price' in service ? service.price : service.duration60}</span>
+                <div className="flex justify-between items-start mb-8 md:mb-12">
+                  <h3 className="text-xl md:text-2xl font-serif text-espresso pr-4">{service.name}</h3>
+                  <span className="text-gold font-medium text-sm md:text-base">₹{'price' in service ? service.price : service.duration60}</span>
                 </div>
-                <div className="mt-auto flex justify-between items-center text-sm">
-                  <span className="text-espresso/50 uppercase tracking-wider text-xs">
+                <div className="mt-auto flex justify-between items-center text-xs md:text-sm">
+                  <span className="text-espresso/50 uppercase tracking-wider text-[10px] md:text-xs">
                     {'duration60' in service ? '60 / 90 MIN' : 'POLISHING'}
                   </span>
-                  <Link href={`/contact?service=${encodeURIComponent(service.name)}`} className="text-burgundy opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2 uppercase tracking-wider text-xs font-semibold">
+                  <Link href={`/contact?service=${encodeURIComponent(service.name)}`} className="text-burgundy opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2 uppercase tracking-wider text-[10px] md:text-xs font-semibold">
                     Enquire <span>→</span>
                   </Link>
                 </div>
@@ -173,92 +173,92 @@ export default function Home() {
       </section>
 
       {/* The Space Gallery */}
-      <section className="py-24 md:py-36 px-6 md:px-12 max-w-7xl mx-auto w-full">
+      <section className="py-16 md:py-36 px-6 md:px-12 max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center">
-          <div className="relative h-[60vh] md:h-[80vh] rounded-xl overflow-hidden group">
+          <div className="relative h-[50vh] md:h-[80vh] rounded-xl overflow-hidden group">
             <Image src="/images/img3.jpg" alt="Couples Treatment" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-1000 group-hover:scale-105" />
             <div className="absolute inset-0 bg-black/20" />
-            <span className="absolute bottom-8 left-8 text-cream text-xs uppercase tracking-[0.2em] font-semibold">Shared Rituals</span>
+            <span className="absolute bottom-6 md:bottom-8 left-6 md:left-8 text-cream text-[10px] md:text-xs uppercase tracking-[0.2em] font-semibold">Shared Rituals</span>
           </div>
-          <div className="relative h-[60vh] md:h-[80vh] rounded-xl overflow-hidden group">
+          <div className="relative h-[50vh] md:h-[80vh] rounded-xl overflow-hidden group">
             <Image src="/images/img4.jpg" alt="Treatment Room" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-1000 group-hover:scale-105" />
             <div className="absolute inset-0 bg-black/20" />
-            <span className="absolute bottom-8 left-8 text-cream text-xs uppercase tracking-[0.2em] font-semibold">Private Rest</span>
+            <span className="absolute bottom-6 md:bottom-8 left-6 md:left-8 text-cream text-[10px] md:text-xs uppercase tracking-[0.2em] font-semibold">Private Rest</span>
           </div>
         </div>
       </section>
 
       {/* Memberships */}
-      <section className="py-24 md:py-32 px-6 md:px-12 bg-deep-burgundy text-cream">
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-serif leading-tight mb-6 text-cream">
+      <section className="py-16 md:py-32 px-6 md:px-12 bg-deep-burgundy text-cream">
+        <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-6xl font-serif leading-tight mb-6 text-cream">
             Make self-care a ritual.
           </h2>
-          <p className="text-cream/70 text-lg">
+          <p className="text-cream/70 text-base md:text-lg">
             Invest in your well-being with our exclusive spa packages designed for ongoing renewal.
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="border border-gold/20 p-10 flex flex-col gap-6 hover:bg-gold/5 transition-colors">
-            <h3 className="text-3xl font-serif">₹8,000</h3>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="border border-gold/20 p-6 md:p-10 flex flex-col gap-4 md:gap-6 hover:bg-gold/5 transition-colors">
+            <h3 className="text-2xl md:text-3xl font-serif">₹8,000</h3>
             <div className="h-[1px] w-full bg-gold/20" />
-            <ul className="text-cream/80 space-y-4 text-sm tracking-wide">
+            <ul className="text-cream/80 space-y-3 md:space-y-4 text-xs md:text-sm tracking-wide">
               <li>• 8 Hours total</li>
               <li>• 8 Months Validity</li>
             </ul>
-            <Link href="/contact" className="mt-auto pt-8 text-gold uppercase tracking-widest text-xs font-semibold">Enquire →</Link>
+            <Link href="/contact" className="mt-auto pt-6 md:pt-8 text-gold uppercase tracking-widest text-[10px] md:text-xs font-semibold">Enquire →</Link>
           </div>
 
-          <div className="border border-gold p-10 flex flex-col gap-6 bg-burgundy shadow-2xl scale-105 relative z-10">
+          <div className="border border-gold p-6 md:p-10 flex flex-col gap-4 md:gap-6 bg-burgundy shadow-2xl scale-105 relative z-10">
             <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-espresso px-4 py-1 text-[10px] uppercase tracking-widest font-bold">Recommended</span>
-            <h3 className="text-4xl font-serif text-white">₹15,000</h3>
+            <h3 className="text-3xl md:text-4xl font-serif text-white">₹15,000</h3>
             <div className="h-[1px] w-full bg-gold/40" />
-            <ul className="text-cream space-y-4 text-sm tracking-wide font-medium">
+            <ul className="text-cream space-y-3 md:space-y-4 text-xs md:text-sm tracking-wide font-medium">
               <li>• 15 Hours total</li>
               <li>• 15 Months Validity</li>
               <li className="text-gold">• + 5 Luxury Hours</li>
               <li className="text-gold">• + 10 Premium Hours</li>
               <li className="text-gold">• Body Scrubbing OR Head Massage with Navrathna Oil</li>
             </ul>
-            <Link href="/contact" className="mt-auto pt-8 text-white hover:text-gold uppercase tracking-widest text-xs font-semibold transition-colors">Enquire →</Link>
+            <Link href="/contact" className="mt-auto pt-6 md:pt-8 text-white hover:text-gold uppercase tracking-widest text-[10px] md:text-xs font-semibold transition-colors">Enquire →</Link>
           </div>
 
-          <div className="border border-gold/20 p-10 flex flex-col gap-6 hover:bg-gold/5 transition-colors">
-            <h3 className="text-3xl font-serif">₹12,000</h3>
+          <div className="border border-gold/20 p-6 md:p-10 flex flex-col gap-4 md:gap-6 hover:bg-gold/5 transition-colors">
+            <h3 className="text-2xl md:text-3xl font-serif">₹12,000</h3>
             <div className="h-[1px] w-full bg-gold/20" />
-            <ul className="text-cream/80 space-y-4 text-sm tracking-wide">
+            <ul className="text-cream/80 space-y-3 md:space-y-4 text-xs md:text-sm tracking-wide">
               <li>• 12 Hours total</li>
               <li>• 12 Months Validity</li>
             </ul>
-            <Link href="/contact" className="mt-auto pt-8 text-gold uppercase tracking-widest text-xs font-semibold">Enquire →</Link>
+            <Link href="/contact" className="mt-auto pt-6 md:pt-8 text-gold uppercase tracking-widest text-[10px] md:text-xs font-semibold">Enquire →</Link>
           </div>
         </div>
-        
-        <div className="max-w-7xl mx-auto mt-16 text-center">
-          <div className="inline-block border border-gold/30 px-8 py-6 rounded-sm bg-burgundy/30">
-            <span className="text-gold uppercase tracking-widest text-xs font-bold block mb-2">Complimentary</span>
-            <p className="text-cream text-lg font-serif">Head Massage with Navrathna Oil & Body Scrubbing</p>
-            <span className="text-cream/60 text-sm mt-1 block">For every massage</span>
+
+        <div className="max-w-7xl mx-auto mt-12 md:mt-16 text-center">
+          <div className="inline-block border border-gold/30 px-6 md:px-8 py-4 md:py-6 rounded-sm bg-burgundy/30">
+            <span className="text-gold uppercase tracking-widest text-[10px] md:text-xs font-bold block mb-2">Complimentary</span>
+            <p className="text-cream text-base md:text-lg font-serif">Head Massage with Navrathna Oil & Body Scrubbing</p>
+            <span className="text-cream/60 text-xs md:text-sm mt-1 block">For every massage</span>
           </div>
-          <p className="text-cream/80 text-xs mt-8">Package details are subject to spa terms. Confirm availability and inclusions before purchase.</p>
+          <p className="text-cream/80 text-[10px] md:text-xs mt-6 md:mt-8">Package details are subject to spa terms. Confirm availability and inclusions before purchase.</p>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="py-32 px-6 md:px-12 bg-espresso text-center">
-        <div className="max-w-3xl mx-auto flex flex-col items-center gap-10">
-          <h2 className="text-4xl md:text-6xl font-serif text-cream leading-tight">
+      <section className="py-20 md:py-32 px-6 md:px-12 bg-espresso text-center">
+        <div className="max-w-3xl mx-auto flex flex-col items-center gap-8 md:gap-10">
+          <h2 className="text-3xl md:text-6xl font-serif text-cream leading-tight">
             Prioritize Your Wellness Today.
           </h2>
-          <p className="text-cream/70 text-lg">
+          <p className="text-cream/70 text-base md:text-lg">
             Secure your reservation and embark on a transformative journey of relaxation.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 w-full justify-center">
-            <Link href="/contact" className="px-10 py-5 bg-gold text-espresso hover:bg-cream transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-xl hover:shadow-2xl text-sm uppercase tracking-widest font-semibold">
+          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 w-full justify-center">
+            <Link href="/contact" className="px-8 py-4 md:px-10 md:py-5 bg-gold text-espresso hover:bg-cream transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-xl hover:shadow-2xl text-xs md:text-sm uppercase tracking-widest font-semibold">
               Book Your Appointment
             </Link>
-            <Link href="/contact" className="px-10 py-5 border border-cream/30 text-cream hover:bg-cream/10 hover:border-cream/60 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] text-sm uppercase tracking-widest font-semibold backdrop-blur-sm">
+            <Link href="/contact" className="px-8 py-4 md:px-10 md:py-5 border border-cream/30 text-cream hover:bg-cream/10 hover:border-cream/60 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] text-xs md:text-sm uppercase tracking-widest font-semibold backdrop-blur-sm">
               Call Camellia Spa
             </Link>
           </div>
@@ -266,6 +266,11 @@ export default function Home() {
       </section>
 
       <Footer />
+
+      {/* Sticky Mobile Actions */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-espresso text-cream flex text-center z-40 border-t border-gold/20 pb-safe">
+        <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="flex-1 py-4 text-xs uppercase tracking-widest font-bold text-gold block active:bg-gold/10 transition-colors">WhatsApp</a>
+      </div>
     </main>
   );
 }
