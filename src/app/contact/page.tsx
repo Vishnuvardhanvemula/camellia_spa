@@ -1,0 +1,258 @@
+"use client";
+
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+import { premiumServices, luxuryServices, bodyPolishing } from "@/data/spa-data";
+import { ChevronDown } from "lucide-react";
+
+function ContactFormContent() {
+  const searchParams = useSearchParams();
+  const initialService = searchParams.get("service") || "";
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    service: initialService,
+    date: "",
+    time: "",
+    message: "",
+  });
+
+  useEffect(() => {
+    if (initialService) {
+      setFormData(prev => ({ ...prev, service: initialService }));
+      setTimeout(() => {
+        const formElement = document.getElementById('booking-form');
+        if (formElement) {
+          formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 300);
+    }
+  }, [initialService]);
+
+  const allServices = [
+    ...premiumServices.map(s => s.name),
+    ...luxuryServices.map(s => s.name),
+    ...bodyPolishing.map(s => s.name),
+    "Spa Package Enquiry"
+  ];
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Default business number - client to replace with real one
+    const businessNumber = "919876543210"; 
+    
+    const text = `Hello Camellia Spa,
+
+I would like to enquire about a booking.
+
+Name: ${formData.name}
+Phone: ${formData.phone}
+Service: ${formData.service || "Not specified"}
+Preferred Date: ${formData.date || "Not specified"}
+Preferred Time: ${formData.time || "Not specified"}
+
+Additional message:
+${formData.message || "Please confirm availability and pricing."}`;
+
+    const encodedText = encodeURIComponent(text);
+    window.open(`https://wa.me/${businessNumber}?text=${encodedText}`, "_blank");
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+      <div className="flex flex-col gap-2">
+        <label htmlFor="name" className="text-xs uppercase tracking-widest font-semibold text-espresso/60">Full Name</label>
+        <input 
+          required
+          type="text" 
+          id="name"
+          className="border-b border-espresso/20 pb-2 bg-transparent focus:outline-none focus:border-burgundy transition-colors"
+          value={formData.name}
+          onChange={e => setFormData({...formData, name: e.target.value})}
+        />
+      </div>
+      
+      <div className="flex flex-col gap-2">
+        <label htmlFor="phone" className="text-xs uppercase tracking-widest font-semibold text-espresso/60">Phone Number</label>
+        <input 
+          required
+          type="tel" 
+          id="phone"
+          className="border-b border-espresso/20 pb-2 bg-transparent focus:outline-none focus:border-burgundy transition-colors"
+          value={formData.phone}
+          onChange={e => setFormData({...formData, phone: e.target.value})}
+        />
+      </div>
+
+      <div className="flex flex-col gap-2 relative">
+        <label className="text-xs uppercase tracking-widest font-semibold text-espresso/60">Preferred Service</label>
+        
+        <div 
+          className="relative border-b border-espresso/20 pb-2 cursor-pointer group"
+          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+        >
+          <div className="flex items-center justify-between">
+            <span className={formData.service ? "text-espresso" : "text-espresso/40"}>
+              {formData.service || "Select a treatment"}
+            </span>
+            <ChevronDown className={`w-4 h-4 text-espresso/40 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+          </div>
+        </div>
+
+        {isDropdownOpen && (
+          <>
+            <div className="fixed inset-0 z-40" onClick={() => setIsDropdownOpen(false)} />
+            <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-espresso/10 shadow-2xl rounded-xl z-50 overflow-hidden flex flex-col max-h-72 overflow-y-auto">
+              <div className="p-2">
+                <div className="text-[10px] font-bold uppercase tracking-widest text-espresso/40 px-4 py-2">Premium Services</div>
+                {premiumServices.map(s => (
+                  <div 
+                    key={s.name}
+                    className="px-4 py-2.5 text-sm hover:bg-gold/10 hover:text-burgundy cursor-pointer transition-colors rounded-lg"
+                    onClick={() => { setFormData({...formData, service: s.name}); setIsDropdownOpen(false); }}
+                  >
+                    {s.name}
+                  </div>
+                ))}
+                
+                <div className="text-[10px] font-bold uppercase tracking-widest text-espresso/40 px-4 py-2 mt-2">Luxury Services</div>
+                {luxuryServices.map(s => (
+                  <div 
+                    key={s.name}
+                    className="px-4 py-2.5 text-sm hover:bg-gold/10 hover:text-burgundy cursor-pointer transition-colors rounded-lg"
+                    onClick={() => { setFormData({...formData, service: s.name}); setIsDropdownOpen(false); }}
+                  >
+                    {s.name}
+                  </div>
+                ))}
+
+                <div className="text-[10px] font-bold uppercase tracking-widest text-espresso/40 px-4 py-2 mt-2">Body Polishing</div>
+                {bodyPolishing.map(s => (
+                  <div 
+                    key={s.name}
+                    className="px-4 py-2.5 text-sm hover:bg-gold/10 hover:text-burgundy cursor-pointer transition-colors rounded-lg"
+                    onClick={() => { setFormData({...formData, service: s.name}); setIsDropdownOpen(false); }}
+                  >
+                    {s.name}
+                  </div>
+                ))}
+
+                <div className="text-[10px] font-bold uppercase tracking-widest text-espresso/40 px-4 py-2 mt-2">Packages</div>
+                <div 
+                  className="px-4 py-2.5 text-sm hover:bg-gold/10 hover:text-burgundy cursor-pointer transition-colors rounded-lg"
+                  onClick={() => { setFormData({...formData, service: "Spa Package Enquiry"}); setIsDropdownOpen(false); }}
+                >
+                  Spa Package Enquiry
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+
+      <div className="grid grid-cols-2 gap-6">
+        <div className="flex flex-col gap-2">
+          <label htmlFor="date" className="text-xs uppercase tracking-widest font-semibold text-espresso/60">Date</label>
+          <input 
+            type="date" 
+            id="date"
+            className="border-b border-espresso/20 pb-2 bg-transparent focus:outline-none focus:border-burgundy transition-colors"
+            value={formData.date}
+            onChange={e => setFormData({...formData, date: e.target.value})}
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="time" className="text-xs uppercase tracking-widest font-semibold text-espresso/60">Time</label>
+          <input 
+            type="time" 
+            id="time"
+            className="border-b border-espresso/20 pb-2 bg-transparent focus:outline-none focus:border-burgundy transition-colors"
+            value={formData.time}
+            onChange={e => setFormData({...formData, time: e.target.value})}
+          />
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <label htmlFor="message" className="text-xs uppercase tracking-widest font-semibold text-espresso/60">Message (Optional)</label>
+        <textarea 
+          id="message"
+          rows={3}
+          className="border-b border-espresso/20 pb-2 bg-transparent focus:outline-none focus:border-burgundy transition-colors resize-none"
+          value={formData.message}
+          onChange={e => setFormData({...formData, message: e.target.value})}
+        />
+      </div>
+
+      <button type="submit" className="mt-8 w-full py-5 bg-gold text-espresso uppercase tracking-widest font-semibold text-sm hover:bg-espresso hover:text-gold transition-colors">
+        Send via WhatsApp
+      </button>
+    </form>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <main className="flex min-h-screen flex-col bg-cream text-espresso">
+      <Navbar />
+
+      {/* Header */}
+      <section className="pt-40 pb-20 px-6 md:px-12 bg-espresso text-cream text-center">
+        <h1 className="text-5xl md:text-7xl font-serif mb-6">Let&apos;s reserve your time.</h1>
+        <p className="text-cream/70 text-lg max-w-2xl mx-auto">
+          Choose your preferred treatment and get in touch with Camellia Spa.
+        </p>
+      </section>
+
+      {/* Content */}
+      <section id="booking-form" className="py-24 px-6 md:px-12 max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
+        
+        {/* Contact Info */}
+        <div className="flex flex-col gap-12">
+          <div>
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-burgundy mb-4">Location</h2>
+            <h3 className="text-3xl font-serif mb-4">Camellia Spa</h3>
+            <p className="text-lg text-espresso/80 max-w-sm leading-relaxed">
+              No. 96, 5th Cross, Muneshwara Layout, Kodigehalli Main Road, Basavanapura, Bangalore – 560 036
+            </p>
+          </div>
+          
+          <div className="w-full aspect-[4/3] bg-espresso/5 rounded-xl overflow-hidden relative">
+             <iframe 
+               src="https://maps.google.com/maps?q=13.004697799682617,77.71403503417969&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+               width="100%" 
+               height="100%" 
+               style={{ border: 0 }} 
+               allowFullScreen 
+               loading="lazy" 
+               referrerPolicy="no-referrer-when-downgrade"
+               className="grayscale contrast-125 opacity-80"
+             ></iframe>
+          </div>
+        </div>
+
+        {/* Form */}
+        <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-espresso/5">
+          <h2 className="text-2xl font-serif mb-8">Send a Booking Enquiry</h2>
+          <Suspense fallback={<div className="h-64 flex items-center justify-center text-sm font-semibold tracking-widest text-espresso/50 uppercase">Loading form...</div>}>
+            <ContactFormContent />
+          </Suspense>
+        </div>
+
+      </section>
+      
+      {/* Sticky Mobile Actions */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-espresso text-cream flex text-center z-40 border-t border-gold/20">
+        <a href="tel:+919876543210" className="flex-1 py-4 text-xs uppercase tracking-widest border-r border-gold/20">Call</a>
+        <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="flex-1 py-4 text-xs uppercase tracking-widest font-bold text-gold block">WhatsApp</a>
+      </div>
+
+      <Footer />
+    </main>
+  );
+}
