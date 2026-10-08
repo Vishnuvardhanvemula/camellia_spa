@@ -77,20 +77,36 @@ export default function ServicesPage() {
               </div>
               <div className="flex flex-col gap-6 md:gap-8">
               {premiumServices.map((service, i) => (
-                <div key={i} className="flex flex-col md:flex-row justify-between items-start md:items-center py-4 md:py-6 border-b border-espresso/10 gap-4 group">
-                  <h3 className="text-xl md:text-2xl font-serif group-hover:text-burgundy transition-colors pr-4">{service.name}</h3>
-                  <div className="flex items-center gap-6 md:gap-16 w-full md:w-auto text-sm font-medium">
-                    <div className="flex flex-col items-start md:items-end">
-                      <span className="text-espresso/50 text-[10px] md:text-xs uppercase tracking-widest mb-1">60 Min</span>
-                      <span>₹{service.duration60}</span>
+                <div key={i} className="flex flex-col py-6 md:py-8 border-b border-espresso/10 gap-4 group">
+                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <h3 className="text-xl md:text-2xl font-serif group-hover:text-burgundy transition-colors pr-4">{service.name}</h3>
+                    <div className="flex items-center gap-6 md:gap-16 w-full md:w-auto text-sm font-medium">
+                      <div className="flex flex-col items-start md:items-end">
+                        <span className="text-espresso/50 text-[10px] md:text-xs uppercase tracking-widest mb-1">60 Min</span>
+                        <span>₹{service.duration60}</span>
+                      </div>
+                      <div className="flex flex-col items-start md:items-end">
+                        <span className="text-espresso/50 text-[10px] md:text-xs uppercase tracking-widest mb-1">90 Min</span>
+                        <span>₹{service.duration90}</span>
+                      </div>
+                      <Link href={`/contact?service=${encodeURIComponent(service.name)}`} className="ml-auto md:ml-4 px-4 py-2 border border-espresso/20 text-espresso uppercase tracking-widest text-[10px] font-bold hover:bg-espresso hover:text-gold transition-colors rounded-sm whitespace-nowrap">
+                        Enquire
+                      </Link>
                     </div>
-                    <div className="flex flex-col items-start md:items-end">
-                      <span className="text-espresso/50 text-[10px] md:text-xs uppercase tracking-widest mb-1">90 Min</span>
-                      <span>₹{service.duration90}</span>
+                  </div>
+                  <div className="flex flex-col md:flex-row gap-6 md:gap-12 text-sm text-espresso/70 mt-2">
+                    <div className="flex-1">
+                      <h4 className="text-[10px] uppercase tracking-widest font-bold text-espresso/50 mb-2">The Process</h4>
+                      <p className="leading-relaxed">{service.process}</p>
                     </div>
-                    <Link href={`/contact?service=${encodeURIComponent(service.name)}`} className="ml-auto md:ml-4 px-4 py-2 border border-espresso/20 text-espresso uppercase tracking-widest text-[10px] font-bold hover:bg-espresso hover:text-gold transition-colors rounded-sm whitespace-nowrap">
-                      Enquire
-                    </Link>
+                    <div className="flex-1">
+                      <h4 className="text-[10px] uppercase tracking-widest font-bold text-espresso/50 mb-2">Key Benefits</h4>
+                      <ul className="list-disc list-inside space-y-1">
+                        {service.benefits.map((benefit, bIdx) => (
+                          <li key={bIdx}>{benefit}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -108,27 +124,43 @@ export default function ServicesPage() {
               </div>
               <div className="flex flex-col gap-6 md:gap-8">
               {luxuryServices.map((service, i) => (
-                <div key={i} className="flex flex-col md:flex-row justify-between items-start md:items-center py-4 md:py-6 border-b border-espresso/10 gap-4 group">
-                  <div>
-                    <h3 className={clsx("text-xl md:text-2xl font-serif transition-colors", service.isSignature ? "text-burgundy" : "group-hover:text-burgundy")}>
-                      {service.name}
-                    </h3>
-                    {service.isSignature && (
-                      <span className="text-gold text-[10px] md:text-xs uppercase tracking-widest font-semibold mt-2 block">Signature Experience</span>
-                    )}
+                <div key={i} className="flex flex-col py-6 md:py-8 border-b border-espresso/10 gap-4 group">
+                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                      <h3 className={clsx("text-xl md:text-2xl font-serif transition-colors", service.isSignature ? "text-burgundy" : "group-hover:text-burgundy")}>
+                        {service.name}
+                      </h3>
+                      {service.isSignature && (
+                        <span className="text-gold text-[10px] md:text-xs uppercase tracking-widest font-semibold mt-2 block">Signature Experience</span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-6 md:gap-16 w-full md:w-auto text-sm font-medium">
+                      <div className="flex flex-col items-start md:items-end">
+                        <span className="text-espresso/50 text-[10px] md:text-xs uppercase tracking-widest mb-1">60 Min</span>
+                        <span>₹{service.duration60}</span>
+                      </div>
+                      <div className="flex flex-col items-start md:items-end">
+                        <span className="text-espresso/50 text-[10px] md:text-xs uppercase tracking-widest mb-1">90 Min</span>
+                        <span>₹{service.duration90}</span>
+                      </div>
+                      <Link href={`/contact?service=${encodeURIComponent(service.name)}`} className="ml-auto md:ml-4 px-4 py-2 border border-espresso/20 text-espresso uppercase tracking-widest text-[10px] font-bold hover:bg-espresso hover:text-gold transition-colors rounded-sm whitespace-nowrap">
+                        Enquire
+                      </Link>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-6 md:gap-16 w-full md:w-auto text-sm font-medium">
-                    <div className="flex flex-col items-start md:items-end">
-                      <span className="text-espresso/50 text-[10px] md:text-xs uppercase tracking-widest mb-1">60 Min</span>
-                      <span>₹{service.duration60}</span>
+                  <div className="flex flex-col md:flex-row gap-6 md:gap-12 text-sm text-espresso/70 mt-2">
+                    <div className="flex-1">
+                      <h4 className="text-[10px] uppercase tracking-widest font-bold text-espresso/50 mb-2">The Process</h4>
+                      <p className="leading-relaxed">{service.process}</p>
                     </div>
-                    <div className="flex flex-col items-start md:items-end">
-                      <span className="text-espresso/50 text-[10px] md:text-xs uppercase tracking-widest mb-1">90 Min</span>
-                      <span>₹{service.duration90}</span>
+                    <div className="flex-1">
+                      <h4 className="text-[10px] uppercase tracking-widest font-bold text-espresso/50 mb-2">Key Benefits</h4>
+                      <ul className="list-disc list-inside space-y-1">
+                        {service.benefits.map((benefit, bIdx) => (
+                          <li key={bIdx}>{benefit}</li>
+                        ))}
+                      </ul>
                     </div>
-                    <Link href={`/contact?service=${encodeURIComponent(service.name)}`} className="ml-auto md:ml-4 px-4 py-2 border border-espresso/20 text-espresso uppercase tracking-widest text-[10px] font-bold hover:bg-espresso hover:text-gold transition-colors rounded-sm whitespace-nowrap">
-                      Enquire
-                    </Link>
                   </div>
                 </div>
               ))}
@@ -146,13 +178,29 @@ export default function ServicesPage() {
               </div>
               <div className="flex flex-col gap-6 md:gap-8">
                 {bodyPolishing.map((service, i) => (
-                  <div key={i} className="flex flex-col md:flex-row justify-between items-start md:items-center py-4 md:py-6 border-b border-espresso/10 gap-4 group">
-                    <h3 className="text-xl md:text-2xl font-serif group-hover:text-burgundy transition-colors pr-4">{service.name}</h3>
-                    <div className="flex items-center gap-6 w-full md:w-auto text-sm font-medium">
-                      <span className="text-base md:text-lg">₹{service.price}</span>
-                      <Link href={`/contact?service=${encodeURIComponent(service.name)}`} className="ml-auto md:ml-4 px-4 py-2 border border-espresso/20 text-espresso uppercase tracking-widest text-[10px] font-bold hover:bg-espresso hover:text-gold transition-colors rounded-sm whitespace-nowrap">
-                        Enquire
-                      </Link>
+                  <div key={i} className="flex flex-col py-6 md:py-8 border-b border-espresso/10 gap-4 group">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                      <h3 className="text-xl md:text-2xl font-serif group-hover:text-burgundy transition-colors pr-4">{service.name}</h3>
+                      <div className="flex items-center gap-6 w-full md:w-auto text-sm font-medium">
+                        <span className="text-base md:text-lg">₹{service.price}</span>
+                        <Link href={`/contact?service=${encodeURIComponent(service.name)}`} className="ml-auto md:ml-4 px-4 py-2 border border-espresso/20 text-espresso uppercase tracking-widest text-[10px] font-bold hover:bg-espresso hover:text-gold transition-colors rounded-sm whitespace-nowrap">
+                          Enquire
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="flex flex-col md:flex-row gap-6 md:gap-12 text-sm text-espresso/70 mt-2">
+                      <div className="flex-1">
+                        <h4 className="text-[10px] uppercase tracking-widest font-bold text-espresso/50 mb-2">The Process</h4>
+                        <p className="leading-relaxed">{service.process}</p>
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-[10px] uppercase tracking-widest font-bold text-espresso/50 mb-2">Key Benefits</h4>
+                        <ul className="list-disc list-inside space-y-1">
+                          {service.benefits.map((benefit, bIdx) => (
+                            <li key={bIdx}>{benefit}</li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 ))}
