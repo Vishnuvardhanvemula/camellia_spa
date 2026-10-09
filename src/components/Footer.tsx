@@ -16,6 +16,7 @@ export function Footer() {
             <h3 className="text-gold uppercase text-xs font-semibold mb-2">Explore</h3>
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <Link href="/services" className="hover:text-white transition-colors">Services</Link>
+            <Link href="/articles" className="hover:text-white transition-colors">Journal</Link>
             <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
           </div>
           <div className="flex flex-col gap-4 text-sm tracking-wide">

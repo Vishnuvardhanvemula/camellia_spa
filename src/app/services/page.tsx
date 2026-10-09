@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { premiumServices, luxuryServices, bodyPolishing, packages } from "@/data/spa-data";
+import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
 
@@ -238,11 +239,25 @@ export default function ServicesPage() {
       </section>
 
       {/* Booking CTA */}
-      <section className="relative z-20 py-16 md:py-24 px-6 md:px-12 bg-deep-burgundy text-center">
-        <h2 className="text-3xl md:text-4xl font-serif text-cream mb-6 md:mb-8">Ready to deeply relax?</h2>
-        <Link href="/contact" className="inline-block px-8 py-4 md:px-10 md:py-5 bg-gold text-espresso hover:bg-cream transition-colors text-xs md:text-sm uppercase tracking-widest font-semibold">
-          Reserve Your Time
-        </Link>
+      <section className="relative z-20 py-20 md:py-32 px-6 md:px-12 text-center overflow-hidden">
+        <Image
+          src="/images/golden-suite.jpg"
+          alt="Camellia Spa Golden Treatment Room"
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-espresso via-deep-burgundy/90 to-espresso/85" />
+        <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
+          <span className="text-gold text-[10px] md:text-xs uppercase tracking-[0.25em] font-bold mb-3">Immersive Sanctuary</span>
+          <h2 className="text-3xl md:text-5xl font-serif text-cream mb-6 leading-tight">Ready to deeply relax?</h2>
+          <p className="text-cream/80 text-sm md:text-base mb-8 max-w-lg">
+            Experience authentic restorative therapies in private suites bathed in warm golden candlelight.
+          </p>
+          <Link href="/contact" className="inline-block px-10 py-5 bg-gold text-espresso hover:bg-cream transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-2xl text-xs md:text-sm uppercase tracking-widest font-semibold">
+            Reserve Your Time
+          </Link>
+        </div>
       </section>
 
       <Footer />

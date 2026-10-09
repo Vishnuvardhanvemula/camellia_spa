@@ -128,7 +128,7 @@ export const bodyPolishing = [
 ];
 
 export const packages = [
-  { price: 8000, hours: 8, validityMonths: 8, inclusions: [] },
+  { price: 10000, hours: 8, validityMonths: 8, inclusions: [] },
   { price: 12000, hours: 12, validityMonths: 12, inclusions: [] },
   { 
     price: 15000, 

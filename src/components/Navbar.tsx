@@ -39,6 +39,7 @@ export function Navbar() {
           <nav className="hidden md:flex items-center gap-8 text-base font-semibold tracking-wide uppercase">
             <Link href="/" className="hover:text-gold hover:underline underline-offset-4 decoration-2 transition-all duration-300">Home</Link>
             <Link href="/services" className="hover:text-gold hover:underline underline-offset-4 decoration-2 transition-all duration-300">Services</Link>
+            <Link href="/articles" className="hover:text-gold hover:underline underline-offset-4 decoration-2 transition-all duration-300">Journal</Link>
             <Link href="/contact" className="hover:text-gold hover:underline underline-offset-4 decoration-2 transition-all duration-300">Contact</Link>
           </nav>
 
@@ -76,9 +77,10 @@ export function Navbar() {
               </button>
             </div>
 
-            <nav className="flex flex-col items-center justify-center flex-1 gap-12 text-3xl font-serif">
+            <nav className="flex flex-col items-center justify-center flex-1 gap-10 text-3xl font-serif">
               <Link href="/" onClick={() => setMobileMenuOpen(false)} className="hover:text-gold transition-colors hover:scale-105">Home</Link>
               <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="hover:text-gold transition-colors hover:scale-105">Services</Link>
+              <Link href="/articles" onClick={() => setMobileMenuOpen(false)} className="hover:text-gold transition-colors hover:scale-105">Journal</Link>
               <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-gold transition-colors hover:scale-105">Contact</Link>
 
               <Link

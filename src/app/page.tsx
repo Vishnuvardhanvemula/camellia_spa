@@ -5,7 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { premiumServices, luxuryServices, bodyPolishing, articles } from "@/data/spa-data";
+import { premiumServices, luxuryServices, bodyPolishing } from "@/data/spa-data";
+import { VideoGallery } from "@/components/VideoGallery";
+import { spaArticles } from "@/data/spa-articles";
 
 export default function Home() {
   const featured = [
@@ -189,55 +191,90 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <div className="relative h-[55vh] md:h-[80vh] rounded-2xl overflow-hidden group border border-gold/30 hover:border-gold transition-all duration-700 shadow-2xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-stretch">
+          {/* Main Featured Golden Suite */}
+          <div className="lg:col-span-7 relative min-h-[480px] lg:min-h-[700px] rounded-2xl overflow-hidden group border border-gold/40 hover:border-gold transition-all duration-700 shadow-2xl">
             <Image 
-              src="/images/img3.jpg" 
-              alt="Couples Treatment Suite" 
+              src="/images/golden-suite.jpg" 
+              alt="The Golden Sanctuary Suite at Camellia Spa" 
               fill 
-              sizes="(max-width: 768px) 100vw, 50vw" 
+              sizes="(max-width: 1024px) 100vw, 60vw" 
               className="object-cover transition-transform duration-1000 group-hover:scale-105" 
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-espresso/90 via-espresso/25 to-transparent" />
             <div className="absolute inset-0 bg-caramel/10 mix-blend-color opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             
             <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 right-6 md:right-10 flex justify-between items-end">
               <div>
-                <span className="text-gold text-[10px] uppercase tracking-[0.25em] font-bold block mb-1">Suite 01 • Dual Sanctuary</span>
-                <h3 className="text-cream text-xl md:text-2xl font-serif">Shared Rejuvenation Rituals</h3>
+                <span className="text-gold text-[10px] md:text-xs uppercase tracking-[0.25em] font-bold block mb-1.5">Suite 01 • The Golden Sanctuary</span>
+                <h3 className="text-cream text-2xl md:text-3xl font-serif">Amber Glow & Textured Gold Therapy</h3>
               </div>
-              <span className="hidden sm:inline-block px-3 py-1.5 bg-espresso/80 backdrop-blur-md border border-gold/40 text-gold text-[10px] uppercase tracking-widest font-semibold rounded-sm">
-                Curated Space
+              <span className="px-3.5 py-1.5 bg-espresso/80 backdrop-blur-md border border-gold/40 text-gold text-[10px] md:text-xs uppercase tracking-widest font-semibold rounded-sm">
+                Featured Suite
               </span>
             </div>
           </div>
 
-          <div className="relative h-[55vh] md:h-[80vh] rounded-2xl overflow-hidden group border border-gold/30 hover:border-gold transition-all duration-700 shadow-2xl">
-            <Image 
-              src="/images/img4.jpg" 
-              alt="Private Treatment Room" 
-              fill 
-              sizes="(max-width: 768px) 100vw, 50vw" 
-              className="object-cover transition-transform duration-1000 group-hover:scale-105" 
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/30 to-transparent" />
-            <div className="absolute inset-0 bg-caramel/10 mix-blend-color opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            
-            <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 right-6 md:right-10 flex justify-between items-end">
-              <div>
-                <span className="text-gold text-[10px] uppercase tracking-[0.25em] font-bold block mb-1">Suite 02 • Solo Retreat</span>
-                <h3 className="text-cream text-xl md:text-2xl font-serif">Acoustic & Sensory Stillness</h3>
+          {/* Right Column with 2 complementary suites */}
+          <div className="lg:col-span-5 flex flex-col gap-6 md:gap-8">
+            <div className="relative min-h-[280px] lg:min-h-[335px] flex-1 rounded-2xl overflow-hidden group border border-gold/30 hover:border-gold transition-all duration-700 shadow-xl">
+              <Image 
+                src="/images/img3.jpg" 
+                alt="Couples Treatment Suite" 
+                fill 
+                sizes="(max-width: 1024px) 100vw, 40vw" 
+                className="object-cover transition-transform duration-1000 group-hover:scale-105" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-espresso/90 via-espresso/25 to-transparent" />
+              <div className="absolute inset-0 bg-caramel/10 mix-blend-color opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              
+              <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+                <div>
+                  <span className="text-gold text-[10px] uppercase tracking-[0.2em] font-bold block mb-0.5">Suite 02 • Dual Sanctuary</span>
+                  <h3 className="text-cream text-lg md:text-xl font-serif">Shared Rejuvenation Rituals</h3>
+                </div>
+                <span className="hidden sm:inline-block px-2.5 py-1 bg-espresso/80 backdrop-blur-md border border-gold/30 text-gold text-[9px] uppercase tracking-widest font-semibold rounded-sm">
+                  Couples
+                </span>
               </div>
-              <span className="hidden sm:inline-block px-3 py-1.5 bg-espresso/80 backdrop-blur-md border border-gold/40 text-gold text-[10px] uppercase tracking-widest font-semibold rounded-sm">
-                Private Room
-              </span>
+            </div>
+
+            <div className="relative min-h-[280px] lg:min-h-[335px] flex-1 rounded-2xl overflow-hidden group border border-gold/30 hover:border-gold transition-all duration-700 shadow-xl">
+              <Image 
+                src="/images/img4.jpg" 
+                alt="Private Treatment Room" 
+                fill 
+                sizes="(max-width: 1024px) 100vw, 40vw" 
+                className="object-cover transition-transform duration-1000 group-hover:scale-105" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-espresso/90 via-espresso/25 to-transparent" />
+              <div className="absolute inset-0 bg-caramel/10 mix-blend-color opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              
+              <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+                <div>
+                  <span className="text-gold text-[10px] uppercase tracking-[0.2em] font-bold block mb-0.5">Suite 03 • Solo Retreat</span>
+                  <h3 className="text-cream text-lg md:text-xl font-serif">Acoustic & Sensory Stillness</h3>
+                </div>
+                <span className="hidden sm:inline-block px-2.5 py-1 bg-espresso/80 backdrop-blur-md border border-gold/30 text-gold text-[9px] uppercase tracking-widest font-semibold rounded-sm">
+                  Private
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Sanctuary in Motion Video Tour */}
+      <div className="bg-ivory border-y border-gold/20">
+        <VideoGallery
+          title="Sanctuary in Motion: Ambience Tour."
+          subtitle="Watch real walkthrough tours of our private suites, textured gold therapy chambers, and calming reception in KR Puram."
+          tag="Virtual Ambience Tour"
+        />
+      </div>
+
       {/* Wellness Articles & Journal */}
-      <section className="py-20 md:py-32 px-6 md:px-12 bg-ivory border-y border-gold/20">
+      <section className="py-20 md:py-32 px-6 md:px-12 bg-cream">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16 gap-6">
             <div>
@@ -246,23 +283,26 @@ export default function Home() {
                 <span className="text-caramel text-[10px] md:text-xs font-semibold uppercase tracking-[0.2em]">The Camellia Journal</span>
               </div>
               <h2 className="text-3xl md:text-5xl font-serif text-espresso leading-tight">
-                Articles & Restorative Wisdom.
+                Articles &amp; Restorative Wisdom.
               </h2>
             </div>
-            <p className="text-espresso/70 text-sm md:text-base max-w-md">
-              Evidence-based insights into botanical therapy, nervous system regulation, and modern self-care rituals.
-            </p>
+            <Link
+              href="/articles"
+              className="px-6 py-3 border border-burgundy/30 text-burgundy hover:bg-burgundy hover:text-cream transition-all text-xs uppercase tracking-widest font-semibold rounded-sm whitespace-nowrap"
+            >
+              View All 6 Articles →
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {articles.map((article, i) => (
+            {spaArticles.slice(0, 3).map((article, i) => (
               <motion.article 
-                key={i}
+                key={article.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.15 }}
-                className="bg-cream border border-gold/20 hover:border-gold p-8 rounded-xl flex flex-col justify-between hover:shadow-2xl transition-all duration-500 group relative overflow-hidden"
+                className="bg-white border border-gold/20 hover:border-gold p-8 rounded-xl flex flex-col justify-between hover:shadow-2xl transition-all duration-500 group relative overflow-hidden"
               >
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gold via-caramel to-gold opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div>
@@ -271,7 +311,9 @@ export default function Home() {
                     <span>{article.readTime}</span>
                   </div>
                   <h3 className="text-xl font-serif text-espresso group-hover:text-burgundy transition-colors leading-snug mb-4">
-                    {article.title}
+                    <Link href={`/articles/${article.slug}`}>
+                      {article.title}
+                    </Link>
                   </h3>
                   <p className="text-espresso/70 text-xs md:text-sm leading-relaxed mb-8">
                     {article.excerpt}
@@ -279,12 +321,21 @@ export default function Home() {
                 </div>
                 <div className="pt-4 border-t border-espresso/10 flex items-center justify-between">
                   <span className="text-[10px] uppercase tracking-wider text-espresso/40 font-medium">{article.date}</span>
-                  <Link href="/services" className="text-gold hover:text-espresso text-xs uppercase tracking-widest font-bold flex items-center gap-1.5 transition-colors">
-                    Explore Ritual <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  <Link href={`/articles/${article.slug}`} className="text-gold hover:text-espresso text-xs uppercase tracking-widest font-bold flex items-center gap-1.5 transition-colors">
+                    Read Guide <span className="group-hover:translate-x-1 transition-transform">→</span>
                   </Link>
                 </div>
               </motion.article>
             ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              href="/articles"
+              className="inline-flex items-center gap-2 text-burgundy hover:text-gold uppercase tracking-widest text-xs font-bold transition-colors"
+            >
+              Browse Complete KR Puram Spa Directory &amp; Guides ({spaArticles.length} Articles) →
+            </Link>
           </div>
         </div>
       </section>
@@ -302,7 +353,7 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           <div className="border border-gold/20 p-6 md:p-10 flex flex-col gap-4 md:gap-6 hover:bg-gold/5 transition-colors">
-            <h3 className="text-2xl md:text-3xl font-serif">₹8,000</h3>
+            <h3 className="text-2xl md:text-3xl font-serif">₹10,000</h3>
             <div className="h-[1px] w-full bg-gold/20" />
             <ul className="text-cream/80 space-y-3 md:space-y-4 text-xs md:text-sm tracking-wide">
               <li>• 8 Hours total</li>
