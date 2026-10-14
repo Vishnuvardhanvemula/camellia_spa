@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import clsx from "clsx";
 import { motion, AnimatePresence } from "framer-motion";
@@ -30,7 +31,14 @@ export function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            <img src="/logo.png" alt="Camellia Spa Logo" className="h-12 md:h-16 w-auto object-contain" />
+            <Image
+              src="/logo.png"
+              alt="Camellia Spa Logo"
+              width={64}
+              height={64}
+              priority
+              className="h-12 md:h-16 w-12 md:w-16 object-contain"
+            />
             <span className="text-xl md:text-2xl font-brand font-bold tracking-widest uppercase">
               Camellia Spa
             </span>

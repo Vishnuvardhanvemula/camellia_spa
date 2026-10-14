@@ -12,6 +12,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://camelliaspa.in"),
   title: "Camellia Spa | Luxury Spa & Wellness Experience",
   description: "Discover Camellia Spa — a warm, private space for premium massages, luxury treatments, body polishing, and spa packages.",
 };

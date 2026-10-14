@@ -6,7 +6,6 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { VideoGallery } from "@/components/VideoGallery";
 import { spaArticles, SpaArticle } from "@/data/spa-articles";
 
 export default function ArticlesPage() {
@@ -118,15 +117,6 @@ export default function ArticlesPage() {
           ))}
         </div>
       </section>
-
-      {/* Video Sanctuary Walkthrough Section */}
-      <div className="bg-ivory border-y border-gold/20">
-        <VideoGallery
-          title="Sanctuary in Motion: KR Puram Video Tour."
-          subtitle="Explore the serene ambience, textured gold treatment suites, and tranquil amenities of Camellia Spa before your visit."
-          tag="Virtual Ambience Tour"
-        />
-      </div>
 
       {/* Booking CTA Banner */}
       <section className="py-20 md:py-28 px-6 md:px-12 bg-deep-burgundy text-center text-cream">

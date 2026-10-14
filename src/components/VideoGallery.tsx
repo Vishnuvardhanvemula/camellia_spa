@@ -161,12 +161,12 @@ export function VideoGallery({
                 </button>
               </div>
 
-              {/* 9:16 Shorts Ratio Container: Native Vertical Player */}
+              {/* 9:16 Shorts Ratio Container: Native Vertical Player with Top Title Bar Cropped */}
               <div className="relative aspect-[9/16] w-full max-h-[72vh] bg-black overflow-hidden flex items-center justify-center">
                 <iframe
-                  src={`https://www.youtube.com/embed/${activeVideo.youtubeId}?autoplay=1&playsinline=1&rel=0&modestbranding=1`}
+                  src={`https://www.youtube.com/embed/${activeVideo.youtubeId}?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3`}
                   title={activeVideo.title}
-                  className="w-full h-full border-0"
+                  className="w-full h-[calc(100%+60px)] -mt-[52px] border-0 pointer-events-auto"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />

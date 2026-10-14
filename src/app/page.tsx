@@ -34,42 +34,27 @@ export default function Home() {
           className="object-cover object-[50%_35%]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-espresso/95 via-espresso/50 to-espresso/20" />
-        <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-black/20" />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col gap-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-
+          <div>
             <h1 className="text-5xl md:text-7xl lg:text-[88px] text-cream font-serif leading-[1.05] max-w-3xl drop-shadow-lg">
               Elevate Your<br />Well-Being.
             </h1>
-          </motion.div>
+          </div>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="text-cream/95 text-lg md:text-xl max-w-xl font-light mt-4 drop-shadow-md"
-          >
+          <p className="text-cream/95 text-lg md:text-xl max-w-xl font-light mt-4 drop-shadow-md">
             Experience a sanctuary of holistic rejuvenation, where expert therapies and uncompromising service restore balance to mind and body.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 mt-8"
-          >
+          <div className="flex flex-col sm:flex-row gap-4 mt-8">
             <Link href="/contact" className="px-8 py-4 bg-gold text-espresso hover:bg-cream transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-xl hover:shadow-2xl text-sm uppercase tracking-widest font-semibold text-center">
               Book Your Appointment
             </Link>
             <Link href="/services" className="px-8 py-4 border-2 border-cream/40 text-cream hover:bg-cream/20 hover:border-cream/70 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] text-sm uppercase tracking-widest font-semibold text-center backdrop-blur-md shadow-lg hover:shadow-xl">
               Explore Treatments
             </Link>
-          </motion.div>
+          </div>
         </div>
 
         {/* Scroll Indicator */}

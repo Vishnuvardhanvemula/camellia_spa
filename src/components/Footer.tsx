@@ -27,7 +27,13 @@ export function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 mt-12 md:mt-16 pt-8 border-t border-cream/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] md:text-xs text-cream/50">
-        <p>© 2026 Camellia Spa. All rights reserved.</p>
+        <div className="flex items-center gap-3">
+          <p>© 2026 Camellia Spa. All rights reserved.</p>
+          <span>•</span>
+          <Link href="/privacy-policy" className="hover:text-gold transition-colors underline underline-offset-2">
+            Privacy Policy
+          </Link>
+        </div>
         <p className="text-center md:text-right">No. 96, 5th Cross, Muneshwara Layout, Kodigehalli Main Road, Basavanapura, Bangalore</p>
       </div>
     </footer>

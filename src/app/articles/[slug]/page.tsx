@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { VideoGallery } from "@/components/VideoGallery";
 import { spaArticles, SpaArticle } from "@/data/spa-articles";
 import { ArticleFAQAccordion } from "./ArticleFAQAccordion";
 
@@ -253,16 +252,6 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           <ArticleFAQAccordion faqs={article.faqs} />
         </div>
       </article>
-
-      {/* Ambient Video Tour Banner */}
-      <div className="bg-ivory border-y border-gold/20">
-        <VideoGallery
-          title="See Our Suites in Motion."
-          subtitle="Explore the serene treatment rooms and clean facilities discussed in this guide."
-          tag="Video Walkthrough"
-          limit={4}
-        />
-      </div>
 
       {/* Related Articles Strip */}
       <section className="py-16 md:py-24 px-6 md:px-12 max-w-7xl mx-auto w-full">
