@@ -278,10 +278,6 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16 gap-6">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-caramel/10 border border-gold/30 rounded-full mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-caramel" />
-                <span className="text-caramel text-[10px] md:text-xs font-semibold uppercase tracking-[0.2em]">The Camellia Journal</span>
-              </div>
               <h2 className="text-3xl md:text-5xl font-serif text-espresso leading-tight">
                 Articles &amp; Restorative Wisdom.
               </h2>

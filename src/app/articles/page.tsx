@@ -26,13 +26,6 @@ export default function ArticlesPage() {
       <section className="pt-36 md:pt-44 pb-16 md:pb-24 px-6 md:px-12 bg-espresso text-cream text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-espresso/50 to-espresso pointer-events-none" />
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-caramel/20 border border-gold/40 rounded-full mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-            <span className="text-gold text-xs font-semibold uppercase tracking-[0.2em]">
-              The Camellia Journal
-            </span>
-          </div>
-
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif leading-tight mb-6">
             Wellness Guides &amp; Spa Wisdom in KR Puram.
           </h1>

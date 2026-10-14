@@ -39,39 +39,30 @@ export interface SpaVideo {
 export const spaVideos: SpaVideo[] = [
   {
     id: "video-1",
-    title: "Grand Reception & Welcome Lounge",
-    subtitle: "Step into our warm teakwood welcome lounge with ambient backlighting",
-    category: "Sanctuary Tour",
-    youtubeId: "dQw4w9WgXcQ", // Replace with your real YouTube Video ID or URL
-    thumbnail: "/images/img1.jpg",
-    duration: "0:45",
+    title: "Couples Harmony Suite",
+    subtitle: "Twin therapy beds, swan linens, and warm amber candlelight designed for shared relaxation.",
+    category: "Couples Suite",
+    youtubeId: "Yp0Ko56FVTw",
+    thumbnail: "/images/video-thumb-1.jpg",
+    duration: "Tour",
   },
   {
     id: "video-2",
-    title: "The Golden Sanctuary Suite",
-    subtitle: "Private therapy suite featuring textured gold walls & warm candlelight",
+    title: "The Lotus Imperial Suite",
+    subtitle: "A private VIP retreat featuring lotus wall art, warm wood slats, and ambient sconces for deep unwinding.",
     category: "Signature Suite",
-    youtubeId: "dQw4w9WgXcQ", // Replace with your real YouTube Video ID or URL
-    thumbnail: "/images/golden-suite.jpg",
-    duration: "1:02",
+    youtubeId: "e3fyx5Ik6E8",
+    thumbnail: "/images/video-thumb-2.jpg",
+    duration: "Tour",
   },
   {
     id: "video-3",
-    title: "Couples & Shared Rituals Suite",
-    subtitle: "Spacious dual treatment suite designed for couples and shared relaxation",
-    category: "Dual Sanctuary",
-    youtubeId: "dQw4w9WgXcQ", // Replace with your real YouTube Video ID or URL
-    thumbnail: "/images/img3.jpg",
-    duration: "0:55",
-  },
-  {
-    id: "video-4",
-    title: "Acoustic Stillness & Solo Retreat",
-    subtitle: "Acoustically buffered private therapy room for deep sensory decompression",
+    title: "The Golden Sanctuary Suite",
+    subtitle: "Textured gold walls, orchid blossoms, and peaceful ambient glow crafted for deep restorative healing.",
     category: "Private Suite",
-    youtubeId: "dQw4w9WgXcQ", // Replace with your real YouTube Video ID or URL
-    thumbnail: "/images/img4.jpg",
-    duration: "0:50",
+    youtubeId: "h3HTADMXkCw",
+    thumbnail: "/images/video-thumb-3.jpg",
+    duration: "Tour",
   },
 ];
 
