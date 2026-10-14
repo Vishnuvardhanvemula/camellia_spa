@@ -84,7 +84,7 @@ export function VideoGallery({
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/30 to-transparent" />
-              
+
               {/* Glowing Play Button Overlay */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gold/90 text-espresso flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:bg-cream transition-all duration-300">

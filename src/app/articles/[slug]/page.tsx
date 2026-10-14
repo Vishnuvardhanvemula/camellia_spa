@@ -227,9 +227,9 @@ export default async function ArticleDetailPage({ params }: PageProps) {
                 Book Your Appointment
               </Link>
               <a
-                href="https://wa.me/919876543210"
+                href="https://wa.me/918217547709"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="px-6 py-3.5 border border-cream/30 text-cream hover:bg-cream/10 transition-colors text-xs uppercase tracking-widest font-bold rounded-sm"
               >
                 WhatsApp Booking

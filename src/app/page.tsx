@@ -402,7 +402,7 @@ export default function Home() {
 
       {/* Sticky Mobile Actions */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-espresso text-cream flex text-center z-40 border-t border-gold/20 pb-safe">
-        <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="flex-1 py-4 text-xs uppercase tracking-widest font-bold text-gold block active:bg-gold/10 transition-colors">WhatsApp</a>
+        <a href="https://wa.me/918217547709" target="_blank" rel="noopener noreferrer" className="flex-1 py-4 text-xs uppercase tracking-widest font-bold text-gold block active:bg-gold/10 transition-colors">WhatsApp</a>
       </div>
     </main>
   );

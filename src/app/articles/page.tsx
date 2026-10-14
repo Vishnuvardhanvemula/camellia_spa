@@ -138,9 +138,9 @@ export default function ArticlesPage() {
               Book Your Appointment
             </Link>
             <a
-              href="https://wa.me/919876543210"
+              href="https://wa.me/918217547709"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="px-8 py-4 border border-cream/30 text-cream hover:bg-cream/10 transition-all text-xs uppercase tracking-widest font-semibold"
             >
               WhatsApp Us

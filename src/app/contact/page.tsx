@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { premiumServices, luxuryServices, bodyPolishing } from "@/data/spa-data";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Check, AlertCircle } from "lucide-react";
 
 function ContactFormContent() {
   const searchParams = useSearchParams();
@@ -20,6 +20,90 @@ function ContactFormContent() {
     time: "",
     message: "",
   });
+
+  const [phoneError, setPhoneError] = useState("");
+  const [phoneTouched, setPhoneTouched] = useState(false);
+  const [isPhoneValid, setIsPhoneValid] = useState(false);
+
+  const validatePhone = (value: string): boolean => {
+    const trimmed = value.trim();
+    if (!trimmed) {
+      setPhoneError("Phone number is required");
+      setIsPhoneValid(false);
+      return false;
+    }
+
+    // Strip spaces, dashes, parentheses, dots
+    const cleaned = trimmed.replace(/[\s\-\(\)\.]/g, "");
+
+    // Case 1: International format with leading +
+    if (cleaned.startsWith("+")) {
+      const digits = cleaned.slice(1);
+      if (!/^\d+$/.test(digits)) {
+        setPhoneError("Only digits and '+' are allowed");
+        setIsPhoneValid(false);
+        return false;
+      }
+      // If +91 (India)
+      if (cleaned.startsWith("+91")) {
+        const indianNumber = cleaned.slice(3);
+        if (!/^[6-9]\d{9}$/.test(indianNumber)) {
+          setPhoneError("Please enter a valid 10-digit Indian mobile number");
+          setIsPhoneValid(false);
+          return false;
+        }
+        setPhoneError("");
+        setIsPhoneValid(true);
+        return true;
+      }
+      // Other international countries (7 to 15 digits)
+      if (digits.length < 7 || digits.length > 15) {
+        setPhoneError("Please enter a valid international phone number");
+        setIsPhoneValid(false);
+        return false;
+      }
+      setPhoneError("");
+      setIsPhoneValid(true);
+      return true;
+    }
+
+    // Case 2: Only digits
+    const digitsOnly = cleaned.replace(/\D/g, "");
+    if (digitsOnly.length !== cleaned.length) {
+      setPhoneError("Only digits, spaces, and '+' are allowed");
+      setIsPhoneValid(false);
+      return false;
+    }
+
+    // Handle 11 digits with leading 0 (trunk prefix)
+    let indianDigits = digitsOnly;
+    if (indianDigits.length === 11 && indianDigits.startsWith("0")) {
+      indianDigits = indianDigits.slice(1);
+    }
+    // Handle 12 digits with leading 91 (country code)
+    else if (indianDigits.length === 12 && indianDigits.startsWith("91")) {
+      indianDigits = indianDigits.slice(2);
+    }
+
+    // Standard 10-digit Indian mobile number (starts with 6, 7, 8, or 9)
+    if (/^[6-9]\d{9}$/.test(indianDigits)) {
+      setPhoneError("");
+      setIsPhoneValid(true);
+      return true;
+    }
+
+    // Informative error feedback
+    if (indianDigits.length !== 10) {
+      setPhoneError("Please enter a valid 10-digit mobile number");
+    } else if (!/^[6-9]/.test(indianDigits)) {
+      setPhoneError("Mobile number must start with 6, 7, 8, or 9");
+    } else {
+      setPhoneError("Please enter a valid mobile number");
+    }
+
+    setIsPhoneValid(false);
+    return false;
+  };
 
   useEffect(() => {
     if (initialService) {
@@ -54,13 +138,32 @@ function ContactFormContent() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Default business number - client to replace with real one
-    const businessNumber = "919876543210"; 
+    if (!validatePhone(formData.phone)) {
+      setPhoneTouched(true);
+      const phoneInput = document.getElementById("phone");
+      phoneInput?.focus();
+      return;
+    }
+    
+    const businessNumber = "918217547709"; 
+    
+    // Format customer phone cleanly for the WhatsApp message
+    let clientPhoneDisplay = formData.phone.trim();
+    const rawClean = clientPhoneDisplay.replace(/[\s\-\(\)\.]/g, "");
+    if (/^[6-9]\d{9}$/.test(rawClean)) {
+      clientPhoneDisplay = `+91 ${rawClean.slice(0, 5)} ${rawClean.slice(5)}`;
+    } else if (rawClean.startsWith("+91") && rawClean.length === 13) {
+      clientPhoneDisplay = `+91 ${rawClean.slice(3, 8)} ${rawClean.slice(8)}`;
+    } else if (rawClean.length === 12 && rawClean.startsWith("91")) {
+      clientPhoneDisplay = `+91 ${rawClean.slice(2, 7)} ${rawClean.slice(7)}`;
+    } else if (rawClean.length === 11 && rawClean.startsWith("0")) {
+      clientPhoneDisplay = `+91 ${rawClean.slice(1, 6)} ${rawClean.slice(6)}`;
+    }
     
     const text = `Camellia Spa - Booking Enquiry
 
 Name: ${formData.name}
-Phone: ${formData.phone}
+Phone: ${clientPhoneDisplay}
 Service: ${formData.service || "Not specified"}
 Preferred Date: ${formData.date || "Not specified"}
 Preferred Time: ${formData.time || "Not specified"}
@@ -83,6 +186,7 @@ We'll get back to you shortly.`;
           required
           type="text" 
           id="name"
+          placeholder="e.g. Priya Sharma"
           className="border-b border-espresso/20 pb-2 bg-transparent focus:outline-none focus:border-burgundy transition-colors"
           value={formData.name}
           onChange={e => setFormData({...formData, name: e.target.value})}
@@ -90,14 +194,45 @@ We'll get back to you shortly.`;
       </div>
       
       <div className="flex flex-col gap-2">
-        <label htmlFor="phone" className="text-xs uppercase tracking-widest font-semibold text-espresso/60">Phone Number</label>
+        <div className="flex justify-between items-center">
+          <label htmlFor="phone" className="text-xs uppercase tracking-widest font-semibold text-espresso/60">Phone Number</label>
+          {phoneError ? (
+            <span className="text-[11px] text-warm-red font-semibold tracking-wide flex items-center gap-1">
+              <AlertCircle className="w-3 h-3 flex-shrink-0" />
+              {phoneError}
+            </span>
+          ) : isPhoneValid && formData.phone.trim() ? (
+            <span className="text-[11px] text-emerald-700 font-semibold tracking-wide flex items-center gap-1">
+              <Check className="w-3.5 h-3.5 flex-shrink-0" />
+              Valid Number
+            </span>
+          ) : null}
+        </div>
         <input 
           required
           type="tel" 
           id="phone"
-          className="border-b border-espresso/20 pb-2 bg-transparent focus:outline-none focus:border-burgundy transition-colors"
+          name="phone"
+          autoComplete="tel"
+          inputMode="tel"
+          placeholder="e.g. 98765 43210 or +91..."
+          className={`border-b pb-2 bg-transparent focus:outline-none transition-colors ${
+            phoneError 
+              ? "border-warm-red text-warm-red focus:border-warm-red" 
+              : isPhoneValid && formData.phone.trim()
+              ? "border-emerald-600/60 focus:border-emerald-700 text-espresso"
+              : "border-espresso/20 focus:border-burgundy"
+          }`}
           value={formData.phone}
-          onChange={e => setFormData({...formData, phone: e.target.value})}
+          onChange={e => {
+            const val = e.target.value;
+            setFormData({...formData, phone: val});
+            if (phoneTouched) validatePhone(val);
+          }}
+          onBlur={e => {
+            setPhoneTouched(true);
+            if (formData.phone) validatePhone(e.target.value);
+          }}
         />
       </div>
 
@@ -261,7 +396,7 @@ export default function ContactPage() {
       
       {/* Sticky Mobile Actions */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-espresso text-cream flex text-center z-40 border-t border-gold/20 pb-safe">
-        <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="flex-1 py-4 text-xs uppercase tracking-widest font-bold text-gold block active:bg-gold/10 transition-colors">WhatsApp</a>
+        <a href="https://wa.me/918217547709" target="_blank" rel="noopener noreferrer" className="flex-1 py-4 text-xs uppercase tracking-widest font-bold text-gold block active:bg-gold/10 transition-colors">WhatsApp</a>
       </div>
 
       <Footer />
